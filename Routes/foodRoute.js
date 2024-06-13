@@ -1,14 +1,19 @@
 const express = require("express")
 const multer = require('multer')
 const fs = require('fs')
+const path = require('path');
 const foodModel = require("../Models/foodModels");
 
 const foodRouter = express.Router();
 
 // Image Storage Engine
+const uploadPath = '/tmp/Uploads';
+if (!fs.existsSync(uploadPath)) {
+    fs.mkdirSync(uploadPath, { recursive: true });
+}
 
 const storage = multer.diskStorage({
-    destination:"Uploads",
+    destination:"/tmp/Uploads",
     filename:(req,file,cb)=>{
         return cb(null, `${Date.now()} ${file.originalname}`)
     }
