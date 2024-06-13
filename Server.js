@@ -2,16 +2,23 @@ const express = require("express")
 const cors = require('cors')
 const connectDB = require("./Config/db")
 const foodRouter = require("./Routes/foodRoute")
-const userRouter = require("./Routes/UserRoute")
+const userRouter = require("./Routes/userRoute")
 const env = require('dotenv/config')
 const orderRouter = require("./Routes/orderRoute")
-// const cartRouter = require("./Routes/CartRoute")
+const path = require('path')
 
-// import userRouter from ""
 
 // app config
 const app = express()
 const port = 4000
+
+//  static files
+
+
+app.get('/', (req,res)=>{
+    app.use(express.static(path.resolve(__dirname, "frontend", "build")))
+    res.sendFile(path.resolve(__dirname, "frontend", "build","index.html"))
+})
 
 // middleware
 app.use(express.json())

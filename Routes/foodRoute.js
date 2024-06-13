@@ -2,8 +2,6 @@ const express = require("express")
 const multer = require('multer')
 const fs = require('fs')
 const foodModel = require("../Models/foodModels");
-const addFood = require("../Controlers/foodControler");
-
 
 const foodRouter = express.Router();
 
